@@ -1,7 +1,6 @@
-// src/components/Projects.jsx
 import React from 'react';
 import { SpotlightCard } from './SpotlightCard';
-import MoreProjectsCard from './MoreProjectsCard'; // <-- Import the new card
+import MoreProjectsCard from './MoreProjectsCard'; 
 import projectImage from '../assets/project-image-1.png'; 
 import { motion } from 'framer-motion';
 

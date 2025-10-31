@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -15,7 +14,7 @@ const navLinks = [
 // Helper function to get the current section based on scroll position
 const getActiveSection = () => {
   let activeId = 'home';
-  const offset = 100; // Detection threshold (100px below the viewport top, past the navbar)
+  const offset = 100;
 
   // Iterate over all links in REVERSE ORDER (from bottom to top)
   for (let i = navLinks.length - 1; i >= 0; i--) {

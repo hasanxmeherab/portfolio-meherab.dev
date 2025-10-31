@@ -1,4 +1,3 @@
-// src/App.jsx
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -10,7 +9,6 @@ import Education from './components/Education'
 
 function App() {
   return (
-    // CHANGED: bg-gray-900 to bg-black for a pure black background
     <div className="dark bg-black text-gray-100 min-h-screen textured-background">
       <Navbar />
       

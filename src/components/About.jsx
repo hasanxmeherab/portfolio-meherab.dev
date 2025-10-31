@@ -1,4 +1,3 @@
-// src/components/About.jsx
 import { motion } from "framer-motion";
 
 // Custom Icon components

@@ -1,4 +1,3 @@
-// src/components/Contact.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -24,7 +23,7 @@ const Contact = () => {
       <div className="max-w-xl mx-auto bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-700 shadow-2xl p-8 md:p-10">
         
         <form 
-          action="https://formspree.io/f/your-form-id" // <-- IMPORTANT: Get your Formspree ID
+          action="https://formspree.io/f/your-form-id"
           method="POST"
           className="space-y-6"
         >

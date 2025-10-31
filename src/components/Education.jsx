@@ -1,7 +1,6 @@
-// src/components/Education.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaCode } from 'react-icons/fa'; // FaGraduationCap is imported
+import { FaGraduationCap, FaCode } from 'react-icons/fa';
 
 // Define your education data
 const educationData = [

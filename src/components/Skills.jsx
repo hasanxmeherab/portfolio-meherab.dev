@@ -1,4 +1,3 @@
-// src/components/Skills.jsx
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from 'react';
 import {
@@ -39,7 +38,7 @@ const Skills = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1, // Stagger the animation of children
+                staggerChildren: 0.1, 
 
             },
         },

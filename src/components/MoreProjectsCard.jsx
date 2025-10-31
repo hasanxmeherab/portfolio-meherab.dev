@@ -1,9 +1,6 @@
-// src/components/MoreProjectsCard.jsx
 import React from 'react';
 import { FaCode } from 'react-icons/fa';
-import { SpotlightCard } from './SpotlightCard'; // Import the wrapper component
-
-// We assume this component is now wrapped in <motion.div variants={itemVariants}> in Projects.jsx
+import { SpotlightCard } from './SpotlightCard';
 
 const MoreProjectsCard = () => {
     
