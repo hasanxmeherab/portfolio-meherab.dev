@@ -65,12 +65,7 @@ const Skills = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center" 
                 >
-                    <div className="flex items-center gap-2 mb-4 justify-center">
-                        <div className="bg-gray-800 border border-gray-700 rounded-md p-1.5 inline-flex">
-                            <Pencil size={16} className="text-gray-400" />
-                        </div>
-                        <p className="text-gray-400 text-sm font-medium tracking-wider">SKILLS</p>
-                    </div>
+                        
                     <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
                         My <span className="text-react-cyan-400">Skills</span> {/* REACT COLOR */}
                     </h1>
