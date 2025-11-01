@@ -8,15 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // You can add your custom colors here
-        emerald: {
-          300: '#6ee7b7',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-        }
+        
+        'react-cyan': {
+          'DEFAULT': '#61DAFB',
+          '50': '#E0F8FF',
+          '100': '#CCF5FF',
+          '200': '#99EEFF',
+          '300': '#66E5FF',
+          '400': '#33DEFF',
+          '500': '#00D6FF',
+          '600': '#00C3E6',
+          '700': '#00A4BF',
+          '800': '#008499',
+          '900': '#006B7A',
+        },
       }
     },
   },

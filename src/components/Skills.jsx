@@ -38,8 +38,7 @@ const Skills = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1, 
-
+                staggerChildren: 0.1, // Stagger the animation of children
             },
         },
     };
@@ -54,11 +53,8 @@ const Skills = () => {
     return (
         <section 
             id="skills" 
-            // FIXED: Removed bg-[#0c0c0c] and relative/overflow-hidden. Now inherits page background.
-            className="w-full flex items-center justify-center font-sans py-24"
+            className="w-full flex items-center justify-center font-sans relative py-24"
         >
-            {/* REMOVED: The inner div with the duplicate texture overlay. */}
-            
             <div className="w-full max-w-6xl px-6 mx-auto z-10">
 
                 {/* Animate the heading */}
@@ -67,14 +63,20 @@ const Skills = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center"
+                    className="text-center" 
                 >
-                    
+                    <div className="flex items-center gap-2 mb-4 justify-center">
+                        <div className="bg-gray-800 border border-gray-700 rounded-md p-1.5 inline-flex">
+                            <Pencil size={16} className="text-gray-400" />
+                        </div>
+                        <p className="text-gray-400 text-sm font-medium tracking-wider">SKILLS</p>
+                    </div>
                     <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
-                        My <span className="text-emerald-400">Skills</span>
+                        My <span className="text-react-cyan-400">Skills</span> {/* REACT COLOR */}
                     </h1>
                 </motion.div>
 
+                {/* Filter Buttons Container: Centered */}
                 <div className="flex flex-wrap gap-3 mb-10 justify-center">
                     {categories.map(category => (
                         <button
@@ -82,7 +84,7 @@ const Skills = () => {
                             onClick={() => setActiveCategory(category)}
                             className={`px-5 py-2 text-sm rounded-full transition-all duration-300 ease-in-out font-medium
                                 ${activeCategory === category
-                                    ? 'bg-emerald-400 text-black shadow-[0_0_20px_rgba(52,211,153,0.6)]'
+                                    ? 'bg-react-cyan-400 text-black shadow-[0_0_20px_rgba(97,218,251,0.6)]' // REACT COLOR + SHADOW
                                     : 'bg-gray-800/60 border border-gray-700 text-gray-300 hover:bg-gray-700/80'
                                 }`}
                         >
@@ -109,8 +111,7 @@ const Skills = () => {
                                 animate="visible"
                                 exit="exit"
                                 layout // Animate layout changes
-                                // RESTORED: Original dark background and Tailwind hover effects
-                                className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/60 border border-gray-700 rounded-full px-4 py-2.5 cursor-pointer hover:bg-gray-700/80 hover:border-emerald-400 transition-colors duration-300"
+                                className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/60 border border-gray-700 rounded-full px-4 py-2.5 cursor-pointer hover:bg-gray-700/80 hover:border-react-cyan-400 transition-colors duration-300" // REACT COLOR HOVER
                             >
                                 {skill.icon}
                                 <span className="text-gray-200 text-sm font-medium">{skill.name}</span>

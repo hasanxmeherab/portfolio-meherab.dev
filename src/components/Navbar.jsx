@@ -11,62 +11,51 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-// Helper function to get the current section based on scroll position
+// Helper function to get the current section based on scroll position (iterates backward)
 const getActiveSection = () => {
   let activeId = 'home';
-  const offset = 100;
+  const offset = 100; 
 
-  // Iterate over all links in REVERSE ORDER (from bottom to top)
   for (let i = navLinks.length - 1; i >= 0; i--) {
     const link = navLinks[i];
     const section = document.querySelector(link.href);
     if (section) {
       const rect = section.getBoundingClientRect();
-      // If the top of the section has scrolled past the offset point (100px from top)
       if (rect.top <= offset) {
         activeId = link.href.substring(1);
-        break; // Found the deepest section, stop searching
+        break;
       }
     }
   }
   return activeId;
 };
 
-const Navbar = () => {
+// RECEIVES isScrolled AS PROP FROM APP.JSX
+const Navbar = ({ isScrolled }) => { 
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // 1. Scroll Shadow/Border Logic
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-      
-      // 2. Active Section Logic
-      if (window.requestAnimationFrame) {
-          window.requestAnimationFrame(() => {
-              setActiveSection(getActiveSection());
-          });
-      } else {
-          setActiveSection(getActiveSection());
-      }
+    const handleActiveSection = () => {
+        if (window.requestAnimationFrame) {
+            window.requestAnimationFrame(() => {
+                setActiveSection(getActiveSection());
+            });
+        } else {
+            setActiveSection(getActiveSection());
+        }
     };
     
-    // Initial check and setup listeners
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+    handleActiveSection();
+    window.addEventListener('scroll', handleActiveSection);
+    window.addEventListener('resize', handleActiveSection);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', handleActiveSection);
+      window.removeEventListener('resize', handleActiveSection);
     };
-  }, []);
+  }, []); 
 
   return (
     <motion.nav 
@@ -74,9 +63,7 @@ const Navbar = () => {
         fixed w-full top-0 z-50 
         transition-all duration-300 ease-in-out
         ${isScrolled 
-          // WHEN SCROLLED: Use dark gray background, shadow, and border
           ? 'dark:bg-gray-900 shadow-md border-b border-slate-700' 
-          // WHEN AT TOP: Use transparent background (allows page texture to show)
           : 'bg-transparent shadow-none border-b border-transparent' 
         } 
       `}
@@ -89,7 +76,7 @@ const Navbar = () => {
           
           <a href="#home" className="text-3xl font-bold">
             <span className="text-slate-100">Meherab</span>
-            <span className="text-emerald-400">.Dev</span>
+            <span className="text-react-cyan-400">.Dev</span>
           </a>
 
           <div className="hidden md:flex space-x-4">
@@ -100,14 +87,16 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className={`
+                    relative 
                     text-lg font-medium transition duration-300 px-4 py-2 rounded-lg 
                     ${isActive
-                      ? 'bg-emerald-400 text-gray-900 font-bold'
-                      : 'text-slate-100 hover:text-emerald-400'
+                      ? 'bg-react-cyan-400 text-gray-900 font-bold'
+                      : 'text-slate-100 hover:text-react-cyan-400'
                     }
                   `}
                 >
                   {link.label}
+                  
                 </a>
               );
             })}
@@ -126,7 +115,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu (Dropdown) - Keep a solid background when open */}
+      {/* Mobile Menu (Dropdown) */}
       <div
         className={`md:hidden absolute w-full dark:bg-gray-900 shadow-lg transition-all duration-300 ease-in-out ${
           isOpen ? 'top-20 opacity-100' : '-top-96 opacity-0'
@@ -142,7 +131,7 @@ const Navbar = () => {
                 className={`
                   block w-full text-center text-lg py-4 transition duration-300 
                   ${isActive
-                    ? 'bg-emerald-600 text-white font-bold'
+                    ? 'bg-react-cyan-600 text-white font-bold'
                     : 'text-slate-100 hover:dark:bg-gray-800'
                   }
                 `}

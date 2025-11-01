@@ -39,8 +39,8 @@ const Education = () => {
                 viewport={{ once: true, amount: 0.5 }}
             >
                 {/* ADDED: Icon next to the title */}
-                <FaGraduationCap className="text-emerald-400" />
-                <span className="text-emerald-400">Education</span>
+                <FaGraduationCap className="text-react-cyan-400" />
+                <span className="text-react-cyan-400">Education</span>
             </motion.h2>
 
             <div className="relative max-w-4xl mx-auto">
@@ -48,8 +48,8 @@ const Education = () => {
                 <div 
                     className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-slate-700 h-full"
                     style={{
-                        boxShadow: '0 0 4px rgba(52, 211, 153, 0.5), 0 0 8px rgba(52, 211, 153, 0.2)'
-                    }} 
+                        boxShadow: '0 0 4px rgba(97, 218, 251, 0.5), 0 0 8px rgba(97, 218, 251, 0.2)'
+                    }}
                 />
 
                 {educationData.map((item, index) => {
@@ -74,11 +74,11 @@ const Education = () => {
                             viewport={{ once: true, amount: 0.5 }}
                         >
                             <div className={`w-full md:w-5/12 p-4 rounded-lg bg-slate-800/50 relative ${isEven ? 'md:mr-8' : 'md:ml-8'} 
-                                ${shouldGlow ? 'border border-emerald-500 shadow-lg shadow-emerald-500/20' : 'border border-slate-700'}
+                                ${shouldGlow ? 'border border-cyan-500 shadow-lg shadow-cyan-500/20' : 'border border-slate-700'}
                             `}>
                                 
                                 {/* 1. Degree Title Pill/Tag */}
-                                <span className="inline-block bg-emerald-600 text-white text-sm font-semibold px-3 py-1 rounded-md mb-3">
+                                <span className="inline-block bg-react-cyan-600 text-black text-sm font-semibold px-3 py-1 rounded-md mb-3">
                                     {item.title}
                                 </span>
                                 
@@ -101,17 +101,17 @@ const Education = () => {
                                     </p>
                                 )}
                                 
-                                {/* 5. Year/Running (Emerald Accent Color) */}
-                                <span className="text-sm font-semibold text-emerald-400 block">
+                                {/* 5. Year/Running (Cyan Accent Color) */}
+                                <span className="text-sm font-semibold text-react-cyan-400 block">
                                     {item.year}
                                 </span>
 
                                 {/* Timeline Dot (Unchanged) */}
-                                <div className={`absolute rounded-full bg-emerald-500 border-slate-900 top-1/2 transform -translate-y-1/2 ${isEven ? 'right-0 md:translate-x-1/2' : 'left-0 md:-translate-x-1/2'} 
-                                    ${shouldGlow ? 'w-5 h-5 border-4 shadow-md shadow-emerald-500/50' : 'w-4 h-4 border-2'}
+                                <div className={`absolute rounded-full bg-react-cyan-500 border-slate-900 top-1/2 transform -translate-y-1/2 ${isEven ? 'right-0 md:translate-x-1/2' : 'left-0 md:-translate-x-1/2'} 
+                                    ${shouldGlow ? 'w-5 h-5 border-4 shadow-md shadow-react-cyan-500/50' : 'w-4 h-4 border-2'}
                                 `}>
                                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-900 rounded-full p-2">
-                                        <item.icon size={16} className="text-emerald-400" />
+                                        <item.icon size={16} className="text-react-cyan-400" />
                                     </div>
                                 </div>
 

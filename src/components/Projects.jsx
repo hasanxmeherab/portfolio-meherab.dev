@@ -1,30 +1,55 @@
-import React from 'react';
+// src/components/Projects.jsx
+import React, { useState } from 'react'; 
 import { SpotlightCard } from './SpotlightCard';
-import MoreProjectsCard from './MoreProjectsCard'; 
-import projectImage from '../assets/project-image-1.png'; 
 import { motion } from 'framer-motion';
+// Consolidated FaCode, FaArrowRight, FaLaptopCode for buttons + FaCode for Coming Soon card
+import { FaCode, FaArrowRight, FaLaptopCode } from 'react-icons/fa'; 
+import projectImage from '../assets/project-image-1.png'; 
 
+// --- PROJECT DATA ---
 const projects = [
   {
+    id: 1,
     title: 'Fahim Poultry Feed',
-    description: 'A full-stack business management system using the MERN stack.',
+    description: 'A robust, role-based MERN stack solution for managing poultry farm inventory, sales, and complex production records.',
     image: projectImage,
     liveUrl: 'https://fahimpoultryfeed.me',
     githubUrl: 'https://github.com/hasanxmeherab/Fahim-Poultry-Feed',
-    gridSpan: 'md:col-span-1',
-  },
-  {
-    title: 'Second Project',
-    description: 'A cool app I built with React and Tailwind.',
-    image: null, 
-    liveUrl: '#',
-    githubUrl: '#',
-    gridSpan: 'md:col-span-1',
+    gridSpan: 'md:col-span-1', 
+    
+    // RICH DETAILS (for Modal)
+    overview: 'This custom full-stack business application digitized the entire operational workflow of a poultry feed business. It provides real-time tracking of raw material inventory, manages production batches, tracks sales, and generates detailed financial reports, significantly reducing manual errors and increasing operational efficiency.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Tailwind CSS'],
+    features: [
+      'Role-Based Access Control (Admin, Manager, Production Staff)',
+      'Dynamic Raw Material and Finished Goods Inventory Tracking',
+      'Cost Calculation and Production Batch Logging',
+      'Comprehensive Sales, Ledger, and Financial Reporting',
+      'User-friendly, fully responsive interface built with React'
+    ]
   },
 ]; 
+// ---------------------------------------------------
 
 const Projects = () => {
-  // Animation variants
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [selectedProject, setSelectedProject] = useState(null); 
+
+  const primaryProject = projects[0]; 
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden'; 
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+    document.body.style.overflow = 'auto'; 
+  };
+
+  // Animation variants (remain the same)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,7 +73,7 @@ const Projects = () => {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6 }}
       >
-        My <span className="text-emerald-400">Projects</span>
+        My <span className="text-react-cyan-400">Projects</span>
       </motion.h2>
       
       <motion.div 
@@ -59,49 +84,68 @@ const Projects = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
 
-        {/* --- Project 1 --- */}
+        {/* --- Project 1: Modal Trigger --- */}
         <SpotlightCard 
-          className={projects[0].gridSpan}
+          className={primaryProject.gridSpan + " cursor-pointer"}
           variants={itemVariants}
+          onClick={() => openModal(primaryProject)}
         >
-          {projects[0].image && (
+          {primaryProject.image && (
             <img 
-              src={projects[0].image} 
-              alt={projects[0].title} 
+              src={primaryProject.image} 
+              alt={primaryProject.title} 
               className="w-full h-48 object-cover"
             />
           )}
-          <div className="p-6"> 
-            <h3 className="text-2xl font-bold mb-2 text-slate-100">{projects[0].title}</h3>
-            <p className="text-slate-400 mb-4">{projects[0].description}</p>
-            <div className="flex gap-4">
-              <a href={projects[0].liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-semibold">Live Demo</a>
-              <a href={projects[0].githubUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300 font-semibold">GitHub</a>
-            </div>
+          <div className="p-6 text-center">
+            <h3 className="text-2xl font-bold mb-2 text-slate-100">{primaryProject.title}</h3>
+            <p className="text-slate-400 mb-6">{primaryProject.description}</p>
+            
+            {/* Details Button (Triggering Modal) */}
+            <motion.a 
+              href="#" 
+              whileHover="hover" 
+              initial="rest"
+              onClick={(e) => { e.preventDefault(); openModal(primaryProject); }}
+              className="inline-flex items-center text-react-cyan-400 hover:text-react-cyan-300 font-semibold transition duration-300"
+            >
+                Details 
+                <motion.span
+                    variants={{ rest: { x: 0 }, hover: { x: 5 } }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className="ml-2"
+                >
+                    <FaArrowRight className="text-sm" />
+                </motion.span>
+            </motion.a>
           </div>
         </SpotlightCard>
 
-        {/* --- Project 2 --- */}
-        <SpotlightCard 
-          className={projects[1].gridSpan}
-          variants={itemVariants}
+        {/* --- Merged: More Projects Card (Spans remaining 2 Columns) --- */}
+        <motion.div 
+            variants={itemVariants} 
+            className="md:col-span-2" 
         >
-          <div className="p-6">
-            <h3 className="text-2xl font-bold mb-2 text-slate-100">{projects[1].title}</h3>
-            <p className="text-slate-400 mb-4">{projects[1].description}</p>
-            <div className="flex gap-4">
-              <a href={projects[1].liveUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-semibold">Live Demo</a>
-              <a href={projects[1].githubUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-300 font-semibold">GitHub</a>
-            </div>
-          </div>
-        </SpotlightCard>
-
-        {/* --- More Projects Card (Wrapped for Animation) --- */}
-        <motion.div variants={itemVariants}>
-            <MoreProjectsCard />
+            {/* INLINED CONTENT FROM MoreProjectsCard.jsx */}
+            <SpotlightCard 
+                className="col-span-1 md:col-span-1 h-full flex flex-col items-center justify-center text-center p-8"
+            >
+                <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-react-cyan-500/10 border border-react-cyan-500 mx-auto">
+                    <FaCode size={32} className="text-react-cyan-400" /> {/* FaCode is needed here */}
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-3 text-slate-100">
+                    More Projects Coming Soon
+                </h3>
+                
+                <p className="text-slate-400 leading-relaxed max-w-sm">
+                    I'm constantly exploring new technologies and building exciting things. Stay tuned for my latest work!
+                </p>
+            </SpotlightCard>
         </motion.div>
         
       </motion.div>
+
     </section>
   );
 };

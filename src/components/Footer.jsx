@@ -24,20 +24,14 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-6">
-          <a 
-            href="https://github.com/hasanxmeherab" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-slate-400 hover:text-emerald-400 transition duration-300 transform hover:scale-110"
-          >
+          <a href="https://github.com/hasanxmeherab" 
+          target="_blank" rel="noopener noreferrer" 
+          className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110">
             <FaGithub size={24} />
           </a>
-          <a 
-            href="https://linkedin.com/in/hasanxmeherab" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-slate-400 hover:text-emerald-400 transition duration-300 transform hover:scale-110"
-          >
+          <a href="https://linkedin.com/in/hasanxmeherab" 
+          target="_blank" rel="noopener noreferrer" 
+          className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110">
             <FaLinkedin size={24} />
           </a>
         </div>
