@@ -1,29 +1,29 @@
-// src/components/Projects.jsx
 import React, { useState } from 'react'; 
 import { SpotlightCard } from './SpotlightCard';
 import { motion } from 'framer-motion';
-// Consolidated FaCode, FaArrowRight, FaLaptopCode for buttons + FaCode for Coming Soon card
 import { FaCode, FaArrowRight, FaLaptopCode } from 'react-icons/fa'; 
 import projectImage from '../assets/project-image-1.png'; 
+import ProjectDetails from './ProjectDetails';
 
 // --- PROJECT DATA ---
 const projects = [
   {
     id: 1,
     title: 'Fahim Poultry Feed',
-    description: 'A robust, role-based MERN stack solution for managing poultry farm inventory, sales, and complex production records.',
+    description: '🐔 A Robust, Role-Based MERN Stack Solution for Managing Poultry Feed Business Inventory, Sales, and Credit Cycles.',
     image: projectImage,
     liveUrl: 'https://fahimpoultryfeed.me',
     githubUrl: 'https://github.com/hasanxmeherab/Fahim-Poultry-Feed',
     gridSpan: 'md:col-span-1', 
     
     // RICH DETAILS (for Modal)
-    overview: 'This custom full-stack business application digitized the entire operational workflow of a poultry feed business. It provides real-time tracking of raw material inventory, manages production batches, tracks sales, and generates detailed financial reports, significantly reducing manual errors and increasing operational efficiency.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Tailwind CSS'],
+    overview: 'This custom full-stack business application digitized the entire operational workflow of a poultry feed business. It provides real-time tracking of retail inventory and wholesale products, manages customer credit cycles (batches), tracks all sales and financial adjustments, and generates detailed reports, significantly improving accuracy and operational efficiency.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Tailwind CSS','MUI'],
     features: [
+      'It offers real-time dynamic tracking for inventory, sales, and low-stock alerts.',
       'Role-Based Access Control (Admin, Manager, Production Staff)',
       'Dynamic Raw Material and Finished Goods Inventory Tracking',
-      'Cost Calculation and Production Batch Logging',
+      'The system manages Customer Credit Cycles using a full Batch Management feature.',
       'Comprehensive Sales, Ledger, and Financial Reporting',
       'User-friendly, fully responsive interface built with React'
     ]
@@ -145,6 +145,11 @@ const Projects = () => {
         </motion.div>
         
       </motion.div>
+      <ProjectDetails 
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={closeModal}
+      />
 
     </section>
   );
