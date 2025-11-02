@@ -1,5 +1,3 @@
-// src/components/Footer.jsx
-
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaArrowUp } from 'react-icons/fa'; 
 

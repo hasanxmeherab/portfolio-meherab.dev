@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-// Custom Icon components
+// Custom Icon components (Unchanged)
 const IconWrapper = ({ children }) => (
     <div className="flex items-center justify-center w-12 h-12 bg-slate-800/70 border border-slate-700 rounded-xl mb-4">
         {children}
@@ -26,6 +26,9 @@ const About = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
+    // New class for the shadow
+    const shadowClass = "shadow-lg shadow-react-cyan-400/10 hover:shadow-react-cyan-400/20 transition-shadow duration-300";
+
     return (
         <section id="about" className="py-20 md:py-32">
             <motion.h2
@@ -48,7 +51,8 @@ const About = () => {
             >
                 {/* Point 1: Programming Journey */}
                 <motion.div
-                    className="bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center"
+                    // ⬅️ ADDED SHADOW CLASS
+                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
                     variants={itemVariants}
                 >
                     <IconWrapper><CodeIcon /></IconWrapper>
@@ -60,7 +64,8 @@ const About = () => {
 
                 {/* Point 2: Work I Enjoy */}
                 <motion.div
-                    className="bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center"
+                    // ⬅️ ADDED SHADOW CLASS
+                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
                     variants={itemVariants}
                 >
                     <IconWrapper><TargetIcon /></IconWrapper>
@@ -72,7 +77,8 @@ const About = () => {
 
                 {/* Point 3: Hobbies */}
                 <motion.div
-                    className="bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center"
+                    // ⬅️ ADDED SHADOW CLASS
+                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
                     variants={itemVariants}
                 >
                     <IconWrapper><PaletteIcon /></IconWrapper>

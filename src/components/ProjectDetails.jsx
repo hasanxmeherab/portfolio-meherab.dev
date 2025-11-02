@@ -50,7 +50,7 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
             className="w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-y-auto relative border border-slate-700 bg-black"
             style={{
               // ⬅️ ADDED: Custom Dotted Grid Background styles
-              backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px)`,
               backgroundSize: "30px 30px",
               backgroundPosition: "0 0",
             }}
