@@ -45,22 +45,25 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
           exit="hidden"
           onClick={onClose}
         >
-          {/* Modal Container: UPDATED CLASSNAMES HERE */}
+          {/* Modal Container: Applying the Dotted Grid background */}
           <motion.div
-            className={cn(
-              "w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-y-auto relative border border-slate-700",
-              "bg-slate-900/90 backdrop-blur-md" // ⬅️ ADDED TRANSPARENCY and BLUR EFFECT
-            )}
+            className="w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-y-auto relative border border-slate-700 bg-black"
+            style={{
+              // ⬅️ ADDED: Custom Dotted Grid Background styles
+              backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px)`,
+              backgroundSize: "30px 30px",
+              backgroundPosition: "0 0",
+            }}
             variants={modalVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()} // Prevent click from bubbling to backdrop
           >
-            {/* Close Button */}
+            {/* Close Button (High Z-index to always be on top) */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-slate-400 hover:text-react-cyan-400 transition-colors duration-300 z-10 p-2"
+              className="absolute top-4 right-4 text-slate-400 hover:text-react-cyan-400 transition-colors duration-300 z-50 p-2"
               aria-label="Close project details"
             >
               <FaTimes size={24} />
@@ -68,18 +71,19 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
 
             {/* Project Image */}
             {project.image && (
-                <div className="h-64 md:h-80 overflow-hidden relative">
+                <div className="h-64 md:h-80 overflow-hidden relative z-10">
                     <img 
                         src={project.image} 
                         alt={project.title} 
                         className="w-full h-full object-cover"
                     />
                     {/* Dark gradient overlay for text visibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
             )}
             
-            <div className="p-6 md:p-10">
+            {/* Content Wrapper (Z-index 10 to be above the background pattern) */}
+            <div className="p-6 md:p-10 relative z-10">
                 <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-slate-100">
                     {project.title}
                 </h2>
