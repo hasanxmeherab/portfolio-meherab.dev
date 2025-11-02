@@ -58,7 +58,7 @@ const About = () => {
                     <IconWrapper><CodeIcon /></IconWrapper>
                     <h3 className="text-xl font-bold text-slate-100 mb-2">My Programming Journey</h3>
                     <p className="text-slate-400 leading-relaxed">
-                        From a curiosity about websites to a passion for the MERN stack, I love turning complex problems into beautiful, functional code.
+                        My journey from initial web development curiosity to mastering the MERN stack is fueled by a simple goal: building beautiful, functional solutions to complex problems.
                     </p>
                 </motion.div>
 
@@ -71,7 +71,7 @@ const About = () => {
                     <IconWrapper><TargetIcon /></IconWrapper>
                     <h3 className="text-xl font-bold text-slate-100 mb-2">What I Love to Build</h3>
                     <p className="text-slate-400 leading-relaxed">
-                        I thrive on creating intuitive, dynamic user interfaces. My goal is to build applications that are not just powerful, but also a joy to use.
+                        My passion is building seamless, dynamic user interfaces that transform powerful applications into experiences that are genuinely a joy to use.
                     </p>
                 </motion.div>
 
@@ -84,7 +84,7 @@ const About = () => {
                     <IconWrapper><PaletteIcon /></IconWrapper>
                     <h3 className="text-xl font-bold text-slate-100 mb-2">Beyond the Code</h3>
                     <p className="text-slate-400 leading-relaxed">
-                        When I'm not programming, you'll find me playing cricket or painting. Both hobbies allow me to be creative and strategic in different ways.
+                        Outside of coding, I fuel my mind with strategy and creativity by watching football and diving into various video games.
                     </p>
                 </motion.div>
             </motion.div>
