@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaCode } from 'react-icons/fa';
 
-// Define your education data
+// Define education data
 const educationData = [
     {
         year: '2023 - Running',
