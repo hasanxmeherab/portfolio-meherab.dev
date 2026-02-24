@@ -132,7 +132,7 @@ const Navbar = ({ isScrolled }) => {
                   block w-full text-center text-lg py-4 transition duration-300 
                   ${isActive
                     ? 'bg-react-cyan-600 text-white font-bold'
-                    : 'text-slate-100 hover:dark:bg-gray-800'
+                    : 'text-slate-100 dark:hover:bg-gray-800'
                   }
                 `}
                 onClick={toggleMenu}
