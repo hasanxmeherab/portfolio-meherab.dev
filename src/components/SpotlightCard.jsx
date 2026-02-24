@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 
-export const SpotlightCard = ({ children, className, variants }) => {
+export const SpotlightCard = ({ children, className, variants, onClick }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
 
