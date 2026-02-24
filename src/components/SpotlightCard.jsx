@@ -14,6 +14,7 @@ export const SpotlightCard = ({ children, className, variants }) => {
   return (
     <motion.div
       variants={variants}
+      onClick={onClick}
       className={cn(
         "relative bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden",
         className
