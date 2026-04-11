@@ -1,123 +1,128 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import {
-    SiHtml5, SiCss3, SiJavascript, SiReact, SiNextdotjs,
-    SiTailwindcss, SiBootstrap, SiExpress, SiMongodb, SiMongoose,
-    SiFirebase, SiGit, SiC, SiCplusplus, SiMysql
+  SiHtml5, SiCss3, SiJavascript, SiReact, SiNextdotjs,
+  SiTailwindcss, SiBootstrap, SiExpress, SiMongodb, SiMongoose,
+  SiFirebase, SiGit, SiC, SiCplusplus, SiMysql,
 } from 'react-icons/si';
 
-// Main Skills Component
+const skills = [
+  { name: 'HTML',       icon: <SiHtml5       className="text-orange-500"  size={18} />, category: 'Frontend' },
+  { name: 'CSS',        icon: <SiCss3        className="text-blue-500"    size={18} />, category: 'Frontend' },
+  { name: 'Tailwind',   icon: <SiTailwindcss className="text-cyan-400"    size={18} />, category: 'Frontend' },
+  { name: 'Bootstrap',  icon: <SiBootstrap   className="text-purple-500"  size={18} />, category: 'Frontend' },
+  { name: 'JavaScript', icon: <SiJavascript  className="text-yellow-400"  size={18} />, category: 'Frontend' },
+  { name: 'React.js',   icon: <SiReact       className="text-cyan-400"    size={18} />, category: 'Frontend' },
+  { name: 'Next.js',    icon: <SiNextdotjs   className="text-white"       size={18} />, category: 'Frontend' },
+  { name: 'Express',    icon: <SiExpress     className="text-slate-300"   size={18} />, category: 'Backend'  },
+  { name: 'MongoDB',    icon: <SiMongodb     className="text-green-500"   size={18} />, category: 'Backend'  },
+  { name: 'Mongoose',   icon: <SiMongoose    className="text-red-500"     size={18} />, category: 'Backend'  },
+  { name: 'Firebase',   icon: <SiFirebase    className="text-yellow-400"  size={18} />, category: 'Backend'  },
+  { name: 'MySQL',      icon: <SiMysql       className="text-sky-400"     size={18} />, category: 'Backend'  },
+  { name: 'Git',        icon: <SiGit         className="text-orange-500"  size={18} />, category: 'Tools'    },
+  { name: 'C',          icon: <SiC           className="text-blue-500"    size={18} />, category: 'Tools'    },
+  { name: 'C++',        icon: <SiCplusplus   className="text-blue-400"    size={18} />, category: 'Tools'    },
+];
+
+const categories = ['All', 'Frontend', 'Backend', 'Tools'];
+
+const itemVariants = {
+  hidden:  { opacity: 0, scale: 0.88, y: 10 },
+  visible: { opacity: 1, scale: 1,    y: 0,  transition: { duration: 0.3 } },
+  exit:    { opacity: 0, scale: 0.88, y: -8, transition: { duration: 0.2 } },
+};
+
 const Skills = () => {
-    // Data for skills, including name, icon, and category
-    const skills = [
-        { name: 'HTML', icon: <SiHtml5 className="text-orange-500" size={20} />, category: 'Frontend' },
-        { name: 'CSS', icon: <SiCss3 className="text-blue-500" size={20} />, category: 'Frontend' },
-        { name: 'Tailwind', icon: <SiTailwindcss className="text-cyan-400" size={20} />, category: 'Frontend' },
-        { name: 'Bootstrap', icon: <SiBootstrap className="text-purple-600" size={20} />, category: 'Frontend' },
-        { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" size={20} />, category: 'Frontend' },
-        { name: 'React.js', icon: <SiReact className="text-cyan-400" size={20} />, category: 'Frontend' },
-        { name: 'Next.js', icon: <SiNextdotjs size={20} />, category: 'Frontend' },
-        { name: 'Express', icon: <SiExpress size={20} />, category: 'Backend' },
-        { name: 'MongoDB', icon: <SiMongodb className="text-green-500" size={20} />, category: 'Backend' },
-        { name: 'Mongoose', icon: <SiMongoose className="text-red-700" size={20} />, category: 'Backend' },
-        { name: 'Firebase', icon: <SiFirebase className="text-yellow-500" size={20} />, category: 'Backend' },
-        { name: 'MySQL', icon: <SiMysql className="text-sky-500" size={20} />, category: 'Backend' },
-        { name: 'Git', icon: <SiGit className="text-orange-600" size={20} />, category: 'Tools' },
-        { name: 'C', icon: <SiC className="text-blue-600" size={20} />, category: 'Tools' },
-        { name: 'C++', icon: <SiCplusplus className="text-blue-700" size={20} />, category: 'Tools' },
-    ];
+  const [activeCategory, setActive] = useState('All');
+  const filteredSkills = skills.filter(s => activeCategory === 'All' || s.category === activeCategory);
 
-    const categories = ['All', 'Frontend', 'Backend', 'Tools'];
-    const [activeCategory, setActiveCategory] = useState('All');
-    const filteredSkills = skills.filter(skill => activeCategory === 'All' || skill.category === activeCategory);
+  /* ── Animated slider geometry ── */
+  const tabRefs  = useRef({});
+  const trackRef = useRef(null);
+  const [pill, setPill] = useState({ left: 0, width: 0 });
 
-    // Animation variants for the container of the skills grid
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1, // Stagger the animation of children
-            },
-        },
-    };
+  useLayoutEffect(() => {
+    const el = tabRefs.current[activeCategory];
+    const track = trackRef.current;
+    if (el && track) {
+      const tRect = track.getBoundingClientRect();
+      const eRect = el.getBoundingClientRect();
+      setPill({ left: eRect.left - tRect.left, width: eRect.width });
+    }
+  }, [activeCategory]);
 
-    // Animation variants for each individual skill item
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1 },
-        exit: { y: -20, opacity: 0 } // Define exit animation
-    };
+  return (
+    <section id="skills" className="py-24 md:py-32">
+      <div className="w-full max-w-6xl px-6 mx-auto">
 
-    return (
-        <section 
-            id="skills" 
-            className="w-full flex items-center justify-center font-sans relative py-24 md:py-32"
+        {/* Heading */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-            <div className="w-full max-w-6xl px-6 mx-auto z-10">
+          <p className="eyebrow mb-3">— tech toolbelt —</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-100">
+            My <span className="gradient-text">Skills</span>
+          </h2>
+        </motion.div>
 
-                {/* Animate the heading */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center" 
-                >
-                        
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
-                        My <span className="text-react-cyan-400">Skills</span> {/* REACT COLOR */}
-                    </h2>
-                </motion.div>
+        {/* Filter tabs with sliding pill */}
+        <div className="flex justify-center mb-10">
+          <div ref={trackRef} className="filter-track">
+            {/* Sliding pill */}
+            <motion.div
+              className="absolute top-1 bottom-1 rounded-full bg-react-cyan-500 pointer-events-none"
+              animate={{ left: pill.left, width: pill.width }}
+              transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+              style={{ zIndex: 0 }}
+            />
 
-                {/* Filter Buttons Container: Centered */}
-                <div className="flex flex-wrap gap-3 mb-10 justify-center">
-                    {categories.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            aria-label={`Filter skills by ${category}`}
-                            className={`px-5 py-2 text-sm rounded-full transition-all duration-300 ease-in-out font-medium
-                                focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
-                                ${activeCategory === category
-                                    ? 'bg-react-cyan-400 text-black shadow-[0_0_20px_rgba(97,218,251,0.6)]' // REACT COLOR + SHADOW
-                                    : 'bg-gray-800/60 border border-gray-700 text-gray-300 hover:bg-gray-700/80'
-                                }`}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                ref={el => { tabRefs.current[cat] = el; }}
+                onClick={() => setActive(cat)}
+                aria-label={`Filter by ${cat}`}
+                className={`relative z-10 px-5 py-1.5 text-sm rounded-full font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400 ${
+                  activeCategory === cat ? 'text-black' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                {/* Animate the grid container */}
-                <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                >
-                    {/* AnimatePresence handles the enter/exit animations of items */}
-                    <AnimatePresence>
-                        {filteredSkills.map(skill => (
-                            <motion.div
-                                key={skill.name}
-                                variants={itemVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                layout // Animate layout changes
-                                className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/60 border border-gray-700 rounded-full px-4 py-2.5 cursor-pointer hover:bg-gray-700/80 hover:border-react-cyan-400 transition-colors duration-300" // REACT COLOR HOVER
-                            >
-                                {skill.icon}
-                                <span className="text-gray-200 text-sm font-medium">{skill.name}</span>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-            </div>
-        </section>
-    );
+        {/* Skills grid */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map(skill => (
+              <motion.div
+                key={skill.name}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                layout
+                className="group flex items-center gap-3 bg-white/[0.03] border border-white/[0.07] hover:border-react-cyan-400/30 hover:bg-react-cyan-400/[0.04] rounded-xl px-4 py-3 cursor-default transition-all duration-250"
+              >
+                <span className="flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
+                  {skill.icon}
+                </span>
+                <span className="text-slate-300 text-sm font-medium">{skill.name}</span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
 export default Skills;

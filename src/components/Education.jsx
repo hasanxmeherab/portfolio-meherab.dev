@@ -1,127 +1,116 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap } from 'react-icons/fa';
+import { FaGraduationCap, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
 
-// Define education data
 const educationData = [
-    {
-        year: '2023 - Running',
-        title: 'B.Sc. in SWE',
-        institution: 'Daffodil International University',
-        field: 'Software Engineering',
-        description: '',
-        icon: FaGraduationCap,
-    },
-    {
-        year: '2018-2023',
-        title: 'Diploma in Engineering',
-        institution: 'Daffodil Polytechnic Institute',
-        field: 'Computer Technology ',
-        description: '',
-        icon: FaGraduationCap,
-    },
+  {
+    year: '2023 — Present',
+    title: 'B.Sc. in Software Engineering',
+    institution: 'Daffodil International University',
+    location: 'Dhaka, Bangladesh',
+    field: 'Software Engineering',
+    icon: FaGraduationCap,
+  },
+  {
+    year: '2018 — 2023',
+    title: 'Diploma in Engineering',
+    institution: 'Daffodil Polytechnic Institute',
+    location: 'Dhaka, Bangladesh',
+    field: 'Computer Technology',
+    icon: FaGraduationCap,
+  },
 ];
 
-const Education = () => {
-    // Animation variants for section title
-    const titleVariants = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
+const Education = () => (
+  <section id="education" className="py-24 md:py-32">
 
-    return (
-        <section id="education" className="py-24 md:py-32">
-            <motion.h2
-                className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100 flex items-center justify-center gap-3" // Added flex, items-center, justify-center, gap-3
-                initial="hidden"
-                whileInView="visible"
-                variants={titleVariants}
-                viewport={{ once: true, amount: 0.5 }}
-            >
-                {/* ADDED: Icon next to the title */}
-                <FaGraduationCap className="text-react-cyan-400" />
-                <span className="text-react-cyan-400">Education</span>
-            </motion.h2>
+    {/* Heading */}
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6 }}
+    >
+      <p className="eyebrow mb-3">— academic background —</p>
+      <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-100">
+        My <span className="gradient-text">Education</span>
+      </h2>
+    </motion.div>
 
-            <div className="relative max-w-4xl mx-auto">
-                {/* Vertical Timeline Line (Thin, Dark, with Subtle Glow) */}
-                <div 
-                    className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-slate-700 h-full"
-                    style={{
-                        boxShadow: '0 0 4px rgba(97, 218, 251, 0.5), 0 0 8px rgba(97, 218, 251, 0.2)'
-                    }}
-                />
+    {/* ── Timeline ── */}
+    <div className="relative max-w-3xl mx-auto">
 
-                {educationData.map((item, index) => {
-                    const isEven = index % 2 === 0;
-                    const shouldGlow = true;
-                    const direction = isEven ? -50 : 50;
+      {/* Vertical line — hidden on mobile, visible md+ */}
+      <div
+        className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px"
+        style={{ background: 'linear-gradient(to bottom, transparent, rgba(97,218,251,0.4) 20%, rgba(97,218,251,0.4) 80%, transparent)' }}
+      />
 
-                    return (
-                        <motion.div
-                            key={index}
-                            className={`mb-8 flex w-full ${isEven ? 'justify-start' : 'justify-end'}`}
-                            initial={{ opacity: 0, x: direction }} 
-                            whileInView={{ 
-                                opacity: 1, 
-                                x: 0, 
-                                transition: { 
-                                    delay: index * 0.2,
-                                    duration: 0.7, 
-                                    ease: "easeOut" 
-                                } 
-                            }} 
-                            viewport={{ once: true, amount: 0.5 }}
-                        >
-                            <div className={`w-full md:w-5/12 p-4 rounded-lg bg-slate-800/50 relative ${isEven ? 'md:mr-8' : 'md:ml-8'} 
-                                ${shouldGlow ? 'border border-cyan-500 shadow-lg shadow-cyan-500/20' : 'border border-slate-700'}
-                            `}>
-                                
-                                {/* 1. Degree Title Pill/Tag */}
-                                <span className="inline-block bg-react-cyan-600 text-black text-sm font-semibold px-3 py-1 rounded-md mb-3">
-                                    {item.title}
-                                </span>
-                                
-                                {/* 2. Institution Name */}
-                                <h3 className="text-xl font-bold text-slate-100 mb-1 leading-snug break-words">
-                                    {item.institution}
-                                </h3>
-                                
-                                {/* 3. Specific Field/Program */}
-                                {item.field && (
-                                    <p className="text-lg font-medium text-slate-300 mb-3">
-                                        {item.field}
-                                    </p>
-                                )}
+      {/* Mobile left line */}
+      <div
+        className="md:hidden absolute left-5 top-0 bottom-0 w-px"
+        style={{ background: 'linear-gradient(to bottom, transparent, rgba(97,218,251,0.35) 10%, rgba(97,218,251,0.35) 90%, transparent)' }}
+      />
 
-                                {/* 4. Original Description */}
-                                {item.description && (
-                                    <p className="text-slate-400 mb-3">
-                                        {item.description}
-                                    </p>
-                                )}
-                                
-                                {/* 5. Year/Running (Cyan Accent Color) */}
-                                <span className="text-sm font-semibold text-react-cyan-400 block">
-                                    {item.year}
-                                </span>
+      {educationData.map((item, index) => {
+        const isEven = index % 2 === 0;
+        return (
+          <motion.div
+            key={index}
+            className={`relative flex mb-10 ${
+              /* Mobile: always left-aligned with indent; Desktop: alternate */
+              'pl-14 md:pl-0 md:w-full md:flex ' + (isEven ? 'md:justify-start' : 'md:justify-end')
+            }`}
+            initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
+          >
+            {/* Timeline dot — mobile */}
+            <div className="md:hidden absolute left-[14px] top-6 flex items-center justify-center w-3 h-3 rounded-full bg-react-cyan-400 ring-4 ring-react-cyan-400/20" />
 
-                                {/* Timeline Dot (Unchanged) */}
-                                <div className={`absolute rounded-full bg-react-cyan-500 border-slate-900 top-1/2 transform -translate-y-1/2 ${isEven ? 'right-0 md:translate-x-1/2' : 'left-0 md:-translate-x-1/2'} 
-                                    ${shouldGlow ? 'w-5 h-5 border-4 shadow-md shadow-react-cyan-500/50' : 'w-4 h-4 border-2'}
-                                `}>
-                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-900 rounded-full p-2">
-                                        <item.icon size={16} className="text-react-cyan-400" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        </motion.div>
-                    );
-                })}
+            {/* Timeline dot — desktop */}
+            <div className="hidden md:flex absolute left-1/2 top-6 -translate-x-1/2 z-10 items-center justify-center w-10 h-10 rounded-full bg-[#050810] border-2 border-react-cyan-400/60 text-react-cyan-400 shadow-[0_0_16px_rgba(97,218,251,0.25)]">
+              <item.icon size={16} />
             </div>
-        </section>
-    );
-};
+
+            {/* Card */}
+            <div
+              className={`group relative bg-white/[0.03] border border-white/[0.07] hover:border-react-cyan-500/30 rounded-2xl p-6 card-glow md:w-[calc(50%-2.5rem)] ${
+                isEven ? 'md:mr-10' : 'md:ml-10'
+              }`}
+            >
+              {/* Top-accent bar */}
+              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-react-cyan-500/50 to-transparent" />
+
+              {/* Degree badge */}
+              <span className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-react-cyan-500/10 border border-react-cyan-500/25 text-react-cyan-400 mb-4">
+                {item.title}
+              </span>
+
+              <h3 className="font-display text-lg font-bold text-slate-100 mb-1 leading-snug">
+                {item.institution}
+              </h3>
+
+              <p className="text-sm font-medium text-slate-400 mb-3">{item.field}</p>
+
+              <div className="flex flex-wrap gap-4 text-xs text-slate-500">
+                <span className="flex items-center gap-1.5">
+                  <FaCalendarAlt className="text-react-cyan-500/60" size={11} />
+                  {item.year}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <FaMapMarkerAlt className="text-react-cyan-500/60" size={11} />
+                  {item.location}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  </section>
+);
 
 export default Education;

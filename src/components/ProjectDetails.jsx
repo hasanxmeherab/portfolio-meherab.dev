@@ -45,14 +45,12 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
           exit="hidden"
           onClick={onClose}
         >
-          {/* Modal Container: Applying the Dotted Grid background */}
+          {/* Modal Container */}
           <motion.div
-            className="w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl overflow-y-auto relative border border-slate-700 bg-black"
+            className="w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl overflow-y-auto relative border border-white/[0.09] bg-[#050810]"
             style={{
-              // ⬅️ ADDED: Custom Dotted Grid Background styles
-              backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px)`,
-              backgroundSize: "30px 30px",
-              backgroundPosition: "0 0",
+              backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
+              backgroundSize: "28px 28px",
             }}
             variants={modalVariants}
             initial="hidden"
@@ -84,21 +82,21 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
             
             {/* Content Wrapper (Z-index 10 to be above the background pattern) */}
             <div className="p-6 md:p-10 relative z-10">
-                <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-slate-100">
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-3 text-slate-100">
                     {project.title}
                 </h2>
-                <p className="text-lg text-react-cyan-400 font-medium mb-8">
+                <p className="text-sm text-react-cyan-400 font-medium mb-8 leading-relaxed">
                     {project.description}
                 </p>
 
                 {/* Overview */}
-                <h3 className="text-2xl font-bold text-slate-100 mb-3 border-b border-slate-700 pb-1">Overview</h3>
+                <h3 className="font-display text-xl font-bold text-slate-100 mb-3 border-b border-white/[0.07] pb-2">Overview</h3>
                 <p className="text-slate-400 mb-8 leading-relaxed">
                     {project.overview}
                 </p>
 
                 {/* Key Features */}
-                <h3 className="text-2xl font-bold text-slate-100 mb-4 border-b border-slate-700 pb-1">Key Features</h3>
+                <h3 className="font-display text-xl font-bold text-slate-100 mb-4 border-b border-white/[0.07] pb-2">Key Features</h3>
                 <ul className="space-y-3 mb-8">
                     {project.features.map((feature, index) => (
                         <li key={index} className="flex items-start text-slate-300">
@@ -109,10 +107,10 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
                 </ul>
 
                 {/* Technologies Used */}
-                <h3 className="text-2xl font-bold text-slate-100 mb-4 border-b border-slate-700 pb-1">Tech Stack</h3>
-                <div className="flex flex-wrap gap-3 mb-10">
+                <h3 className="font-display text-xl font-bold text-slate-100 mb-4 border-b border-white/[0.07] pb-2">Tech Stack</h3>
+                <div className="flex flex-wrap gap-2 mb-10">
                     {project.technologies.map((tech, index) => (
-                        <span key={index} className="bg-react-cyan-800/50 text-react-cyan-300 text-sm font-medium px-4 py-1.5 rounded-full border border-react-cyan-700">
+                        <span key={index} className="text-xs font-medium px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-slate-300">
                             {tech}
                         </span>
                     ))}
@@ -125,11 +123,11 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition duration-300",
-                          "bg-react-cyan-500 text-black hover:bg-react-cyan-600"
+                          "btn-shimmer flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300",
+                          "bg-react-cyan-500 text-black hover:bg-react-cyan-400 hover:shadow-[0_0_24px_rgba(97,218,251,0.3)]"
                         )}
                     >
-                        <FaExternalLinkAlt size={16} /> View Live
+                        <FaExternalLinkAlt size={14} /> View Live
                     </a>
                     
                     <a
@@ -137,11 +135,11 @@ const ProjectDetails = ({ isOpen, project, onClose }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition duration-300",
-                          "bg-gray-800 border border-gray-700 text-slate-100 hover:bg-gray-700"
+                          "btn-shimmer flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300",
+                          "bg-white/[0.04] border border-white/[0.1] text-slate-100 hover:bg-white/[0.08] hover:border-white/[0.2]"
                         )}
                     >
-                        <FaGithub size={16} /> View Code
+                        <FaGithub size={14} /> View Code
                     </a>
                 </div>
             </div>

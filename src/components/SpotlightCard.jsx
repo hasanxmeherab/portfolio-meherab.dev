@@ -35,7 +35,7 @@ export const SpotlightCard = ({ children, className, variants, onClick }) => {
       variants={variants}
       onClick={onClick}
       className={cn(
-        "relative bg-gradient-to-b from-slate-800/75 to-slate-900/70 rounded-lg border border-slate-700 overflow-hidden shadow-lg shadow-slate-900/30 transition-colors duration-300",
+        "relative bg-white/[0.03] rounded-2xl border border-white/[0.07] overflow-hidden shadow-lg shadow-black/40 transition-all duration-300",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -44,19 +44,19 @@ export const SpotlightCard = ({ children, className, variants, onClick }) => {
     >
       {/* Spotlight element */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-lg opacity-0 transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.1), transparent 80%)`,
+          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(97, 218, 251, 0.07), transparent 80%)`,
         }}
         animate={{ opacity: isHovered ? 1 : 0 }}
       />
       
       {/* Glowing border element */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-lg opacity-0 transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.15), transparent 80%)`,
-          border: '1px solid rgba(59, 130, 246, 0.3)',
+          background: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(97, 218, 251, 0.08), transparent 80%)`,
+          border: '1px solid rgba(97, 218, 251, 0.2)',
         }}
         animate={{ opacity: isHovered ? 1 : 0 }}
       />

@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <div className="dark bg-black text-gray-100 min-h-screen textured-background">
+    <div className="dark bg-[#050810] text-gray-100 min-h-screen textured-background">
       {/* Pass state down to Navbar */}
       <Navbar isScrolled={isScrolled} /> 
       

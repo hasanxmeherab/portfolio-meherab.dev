@@ -1,70 +1,55 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaArrowUp } from 'react-icons/fa'; 
+import { FaGithub, FaLinkedin, FaArrowUp, FaHeart } from 'react-icons/fa';
 
-// Define the social links data structure right inside the component
 const socialLinks = [
-    { 
-        name: 'GitHub', 
-        url: 'https://github.com/hasanxmeherab', 
-        icon: FaGithub 
-    },
-    { 
-        name: 'LinkedIn', 
-        url: 'https://linkedin.com/in/hasanxmeherab', 
-        icon: FaLinkedin 
-    },
+  { name: 'GitHub',   url: 'https://github.com/hasanxmeherab',        icon: FaGithub   },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/hasanxmeherab',   icon: FaLinkedin },
 ];
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
-  // State and function to handle scrolling to the top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const year = new Date().getFullYear();
 
   return (
-    <footer 
-      className="border-t border-slate-700 mt-20 py-10"
-    >
-      <div className="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row justify-between items-center">
-        
-        <div className="text-center md:text-left mb-4 md:mb-0">
-          <p className="text-sm text-slate-400">
-            &copy; {currentYear} Meherab Hasan Fahim | All rights reserved.
+    <footer className="border-t border-white/[0.06] mt-16">
+      {/* Top divider glow */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-react-cyan-500/30 to-transparent" />
+
+      <div className="container mx-auto px-6 max-w-6xl py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+
+        {/* Left: copyright + built-with */}
+        <div className="text-center md:text-left space-y-1">
+          <p className="text-sm font-semibold text-slate-300 font-display">
+            <span className="gradient-text">Meherab</span>.Dev
           </p>
-          
+          <p className="text-xs text-slate-600">
+            &copy; {year} · Built with{' '}
+            <FaHeart className="inline text-red-500/80 mx-0.5" size={10} />
+            {' '}using React &amp; Tailwind CSS
+          </p>
         </div>
 
-        {/* Combined Social Icons and Back-to-Top Button */}
-        <div className="flex gap-6 items-center">
-          
-          {/* Social Icons */}
-          {socialLinks.map((link) => (
-            <a 
-              key={link.name}
-              href={link.url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label={`Open ${link.name} profile`}
-              className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400"
+        {/* Right: socials + back to top */}
+        <div className="flex items-center gap-4">
+          {socialLinks.map(({ name, url, icon: Icon }) => (
+            <a
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${name} profile`}
+              className="flex items-center justify-center w-9 h-9 rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-500 hover:text-react-cyan-400 hover:border-react-cyan-400/30 hover:bg-react-cyan-400/[0.04] transition-all duration-250 hover:scale-110"
             >
-              <link.icon size={24} />
+              <Icon size={16} />
             </a>
           ))}
 
-          {/* Back-to-Top Arrow Button */}
           <button
-            onClick={scrollToTop}
-            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 p-2 ml-4 rounded-full border border-slate-700 hover:border-react-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Scroll back to top"
+            className="flex items-center justify-center w-9 h-9 rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-500 hover:text-react-cyan-400 hover:border-react-cyan-400/30 hover:bg-react-cyan-400/[0.04] transition-all duration-250 hover:scale-110 ml-2"
           >
-            <FaArrowUp size={18} />
+            <FaArrowUp size={14} />
           </button>
-
         </div>
       </div>
     </footer>

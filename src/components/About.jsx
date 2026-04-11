@@ -1,95 +1,75 @@
 import { motion } from "framer-motion";
 
-// Custom Icon components (Unchanged)
-const IconWrapper = ({ children }) => (
-    <div className="flex items-center justify-center w-12 h-12 bg-slate-800/70 border border-slate-700 rounded-xl mb-4">
-        {children}
-    </div>
-);
+const cards = [
+  {
+    emoji: '⚡',
+    title: 'My Journey',
+    body: 'From first-click curiosity to MERN stack fluency — my path has been driven by a single goal: building beautiful, functional solutions to real problems.',
+  },
+  {
+    emoji: '🎯',
+    title: 'What I Build',
+    body: 'Seamless, dynamic user interfaces that transform complex logic into experiences people genuinely enjoy — fast APIs to pixel-perfect UIs.',
+  },
+  {
+    emoji: '🎮',
+    title: 'Beyond Code',
+    body: 'Football tactics, story-driven video games, and the occasional deep dive into design inspiration — how I recharge and stay creative.',
+  },
+];
 
-const CodeIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>;
-const TargetIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>;
-const PaletteIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path></svg>;
-
-const About = () => {
-    // Animation variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.25 }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-    };
-
-    // New class for the shadow
-    const shadowClass = "shadow-lg shadow-react-cyan-400/10 hover:shadow-react-cyan-400/20 transition-shadow duration-300";
-
-    return (
-        <section id="about" className="py-24 md:py-32">
-            <motion.h2
-                className="text-3xl md:text-4xl font-bold text-center mb-14 md:mb-16 text-slate-100"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6 }}
-            >
-                A Little More About <span className="text-react-cyan-400">Me</span>
-            </motion.h2>
-
-            {/* Main container for the scannable points */}
-            <motion.div
-                className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-            >
-                {/* Point 1: Programming Journey */}
-                <motion.div
-                    // ⬅️ ADDED SHADOW CLASS
-                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
-                    variants={itemVariants}
-                >
-                    <IconWrapper><CodeIcon /></IconWrapper>
-                    <h3 className="text-xl font-bold text-slate-100 mb-2">My Programming Journey</h3>
-                    <p className="text-slate-400 leading-relaxed">
-                        My journey from initial web development curiosity to mastering the MERN stack is fueled by a simple goal: building beautiful, functional solutions to complex problems.
-                    </p>
-                </motion.div>
-
-                {/* Point 2: Work I Enjoy */}
-                <motion.div
-                    // ⬅️ ADDED SHADOW CLASS
-                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
-                    variants={itemVariants}
-                >
-                    <IconWrapper><TargetIcon /></IconWrapper>
-                    <h3 className="text-xl font-bold text-slate-100 mb-2">What I Love to Build</h3>
-                    <p className="text-slate-400 leading-relaxed">
-                        My passion is building seamless, dynamic user interfaces that transform powerful applications into experiences that are genuinely a joy to use.
-                    </p>
-                </motion.div>
-
-                {/* Point 3: Hobbies */}
-                <motion.div
-                    // ⬅️ ADDED SHADOW CLASS
-                    className={`bg-slate-800/50 p-6 rounded-lg border border-slate-700 flex flex-col items-center ${shadowClass}`}
-                    variants={itemVariants}
-                >
-                    <IconWrapper><PaletteIcon /></IconWrapper>
-                    <h3 className="text-xl font-bold text-slate-100 mb-2">Beyond the Code</h3>
-                    <p className="text-slate-400 leading-relaxed">
-                        Outside of coding, I fuel my mind with strategy and creativity by watching football and diving into various video games.
-                    </p>
-                </motion.div>
-            </motion.div>
-        </section>
-    );
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
 };
+
+const itemVariants = {
+  hidden:   { opacity: 0, y: 30 },
+  visible:  { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+};
+
+const About = () => (
+  <section id="about" className="py-24 md:py-32">
+
+    {/* Section header */}
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6 }}
+    >
+      <p className="eyebrow mb-3">— get to know me —</p>
+      <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-100">
+        A Little More About <span className="gradient-text">Me</span>
+      </h2>
+    </motion.div>
+
+    {/* Cards */}
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+    >
+      {cards.map(({ emoji, title, body }) => (
+        <motion.div
+          key={title}
+          variants={itemVariants}
+          whileHover={{ y: -6, transition: { type: 'spring', stiffness: 300 } }}
+          className="group relative bg-white/[0.03] border-t-2 border-t-react-cyan-500/60 border-x border-b border-white/[0.07] rounded-2xl p-8 flex flex-col items-center text-center cursor-default overflow-hidden card-glow"
+        >
+          {/* Background glow on hover */}
+          <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-react-cyan-500/[0.05] to-transparent rounded-2xl" />
+
+          <div className="text-4xl mb-5 select-none">{emoji}</div>
+          <h3 className="font-display text-xl font-bold text-slate-100 mb-3">{title}</h3>
+          <p className="text-slate-400 leading-relaxed text-sm">{body}</p>
+        </motion.div>
+      ))}
+    </motion.div>
+  </section>
+);
 
 export default About;
