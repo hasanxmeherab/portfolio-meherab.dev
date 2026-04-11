@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaGithub, FaLinkedin, FaArrowUp } from 'react-icons/fa'; 
 
 // Define the social links data structure right inside the component
@@ -49,7 +49,8 @@ const Footer = () => {
               href={link.url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110"
+              aria-label={`Open ${link.name} profile`}
+              className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400"
             >
               <link.icon size={24} />
             </a>
@@ -58,7 +59,7 @@ const Footer = () => {
           {/* Back-to-Top Arrow Button */}
           <button
             onClick={scrollToTop}
-            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 p-2 ml-4 rounded-full border border-slate-700 hover:border-react-cyan-400 focus:outline-none"
+            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 p-2 ml-4 rounded-full border border-slate-700 hover:border-react-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400"
             aria-label="Scroll back to top"
           >
             <FaArrowUp size={18} />

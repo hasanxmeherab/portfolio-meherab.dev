@@ -5,10 +5,29 @@ import { cn } from '../utils/cn';
 export const SpotlightCard = ({ children, className, variants, onClick }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const frameRef = React.useRef(null);
+  const pendingPositionRef = React.useRef({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    return () => {
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, []);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    pendingPositionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+
+    if (frameRef.current) {
+      return;
+    }
+
+    frameRef.current = requestAnimationFrame(() => {
+      setMousePosition(pendingPositionRef.current);
+      frameRef.current = null;
+    });
   };
 
   return (
@@ -16,7 +35,7 @@ export const SpotlightCard = ({ children, className, variants, onClick }) => {
       variants={variants}
       onClick={onClick}
       className={cn(
-        "relative bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden",
+        "relative bg-gradient-to-b from-slate-800/75 to-slate-900/70 rounded-lg border border-slate-700 overflow-hidden shadow-lg shadow-slate-900/30 transition-colors duration-300",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}

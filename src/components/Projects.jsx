@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; 
 import { SpotlightCard } from './SpotlightCard';
 import { motion } from 'framer-motion';
-import { FaCode, FaArrowRight, FaLaptopCode } from 'react-icons/fa'; 
+import { FaCode, FaArrowRight } from 'react-icons/fa'; 
 import projectImage1 from '../assets/project-image-1.png'; 
 import projectImage2 from '../assets/oneelixir.png';
 import projectImage3 from '../assets/diulenslink.png';
@@ -96,9 +96,9 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-24 md:py-32">
       <motion.h2 
-        className="text-4xl font-bold text-center mb-16 text-slate-100"
+        className="text-3xl md:text-4xl font-bold text-center mb-14 md:mb-16 text-slate-100"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
@@ -108,34 +108,37 @@ const Projects = () => {
       </motion.h2>
       
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* FIX: Map through the projects array dynamically */}
         {projects.map((project) => (
           <SpotlightCard 
             key={project.id}
-            className={project.gridSpan + " cursor-pointer"}
+            className={project.gridSpan + " cursor-pointer h-full group"}
             variants={itemVariants}
             onClick={() => openModal(project)}
           >
             {project.image && (
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-48 object-cover"
-              />
+              <div className="relative overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} preview`} 
+                  loading="lazy"
+                  className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/10 to-transparent" />
+              </div>
             )}
-            <div className="p-6 text-center">
-              <h3 className="text-2xl font-bold mb-2 text-slate-100">{project.title}</h3>
-              <p className="text-slate-400 mb-6">{project.description}</p>
+            <div className="p-6 text-center flex flex-col min-h-[220px]">
+              <h3 className="text-2xl font-bold mb-2 text-slate-50">{project.title}</h3>
+              <p className="text-slate-300 mb-6 leading-relaxed">{project.description}</p>
               
               <button 
                 onClick={(e) => { e.stopPropagation(); openModal(project); }}
-                className="inline-flex items-center text-react-cyan-400 hover:text-react-cyan-300 font-semibold transition duration-300"
+                className="mt-auto inline-flex items-center justify-center text-react-cyan-300 hover:text-react-cyan-200 font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300 rounded-md"
               >
                 Details 
                 <motion.span
@@ -152,7 +155,7 @@ const Projects = () => {
         {/* --- More Projects Card --- */}
         <motion.div 
           variants={itemVariants} 
-          className="md:col-span-1" 
+          className="sm:col-span-2 lg:col-span-1" 
         >
           <SpotlightCard className="h-full flex flex-col items-center justify-center text-center p-8">
             <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-react-cyan-500/10 border border-react-cyan-500 mx-auto">

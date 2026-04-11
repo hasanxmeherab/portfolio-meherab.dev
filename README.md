@@ -1,16 +1,103 @@
-# React + Vite
+# Meherab Hasan Fahim Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website built with React, Vite, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This portfolio showcases:
 
-## React Compiler
+- Hero introduction and social links
+- About section and professional summary
+- Featured project cards with detailed modal view
+- Education timeline
+- Filterable skills section
+- Contact form with Formspree integration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- Vite 7
+- Tailwind CSS
+- Framer Motion
+- React Icons
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```text
+src/
+	components/
+		Hero.jsx
+		About.jsx
+		Projects.jsx
+		ProjectDetails.jsx
+		Education.jsx
+		Skills.jsx
+		Contact.jsx
+		Navbar.jsx
+		Footer.jsx
+		SpotlightCard.jsx
+	assets/
+	App.jsx
+	main.jsx
+	index.css
+```
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Run development server
+
+```bash
+npm run dev
+```
+
+### 3. Create production build
+
+```bash
+npm run build
+```
+
+### 4. Preview production build
+
+```bash
+npm run preview
+```
+
+## Available Scripts
+
+- `npm run dev`: Start dev server
+- `npm run build`: Build for production
+- `npm run preview`: Preview production build
+- `npm run lint`: Run ESLint checks
+
+## Deployment
+
+This project is ready for deployment on platforms like Vercel, Netlify, or Render.
+
+Recommended deployment flow:
+
+1. Push repository to GitHub
+2. Import project in your hosting provider
+3. Set build command to `npm run build`
+4. Set output directory to `dist`
+
+## Screenshots
+
+Add screenshots in this section after exporting them from your live site:
+
+- Home section
+- Projects section
+- Project details modal
+- Contact section
+
+## Contact
+
+- Portfolio: https://meherabhasan.vercel.app/
+- GitHub: https://github.com/hasanxmeherab
+- LinkedIn: https://linkedin.com/in/hasanxmeherab
+- Email: meherabhasan.dev@gmail.com

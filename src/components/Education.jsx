@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaCode } from 'react-icons/fa';
+import { FaGraduationCap } from 'react-icons/fa';
 
 // Define education data
 const educationData = [
@@ -30,7 +30,7 @@ const Education = () => {
     };
 
     return (
-        <section id="education" className="py-20 md:py-32">
+        <section id="education" className="py-24 md:py-32">
             <motion.h2
                 className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100 flex items-center justify-center gap-3" // Added flex, items-center, justify-center, gap-3
                 initial="hidden"
@@ -82,8 +82,8 @@ const Education = () => {
                                     {item.title}
                                 </span>
                                 
-                                {/* 2. Institution Name (Fixed: text-xl + whitespace-nowrap) */}
-                                <h3 className="text-xl font-bold text-slate-100 mb-1 leading-snug whitespace-nowrap">
+                                {/* 2. Institution Name */}
+                                <h3 className="text-xl font-bold text-slate-100 mb-1 leading-snug break-words">
                                     {item.institution}
                                 </h3>
                                 

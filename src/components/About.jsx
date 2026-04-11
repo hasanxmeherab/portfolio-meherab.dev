@@ -30,9 +30,9 @@ const About = () => {
     const shadowClass = "shadow-lg shadow-react-cyan-400/10 hover:shadow-react-cyan-400/20 transition-shadow duration-300";
 
     return (
-        <section id="about" className="py-20 md:py-32">
+        <section id="about" className="py-24 md:py-32">
             <motion.h2
-                className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100"
+                className="text-3xl md:text-4xl font-bold text-center mb-14 md:mb-16 text-slate-100"
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}

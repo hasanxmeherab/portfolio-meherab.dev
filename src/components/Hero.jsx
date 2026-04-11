@@ -52,7 +52,7 @@ const Hero = ({ isScrolled }) => {
         <div className="flex justify-center md:justify-start gap-4 mb-8">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 bg-react-cyan-500 hover:bg-react-cyan-600 text-black font-bold py-2 px-5 rounded-lg text-base transition duration-300"
+            className="inline-flex items-center gap-2 bg-react-cyan-500 hover:bg-react-cyan-600 text-black font-bold py-2 px-5 rounded-lg text-base transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <FaLaptopCode size={18} /> Browse Projects
           </a>
@@ -60,7 +60,7 @@ const Hero = ({ isScrolled }) => {
           <a
             href={myResume}
             download="Meherab-Hasan-Resume.pdf"
-            className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-slate-100 font-bold py-2 px-5 rounded-lg text-base transition duration-300"
+            className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-slate-100 font-bold py-2 px-5 rounded-lg text-base transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <FaDownload size={18} /> Download Resume
           </a>
@@ -71,7 +71,8 @@ const Hero = ({ isScrolled }) => {
             href="https://github.com/hasanxmeherab"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110"
+            aria-label="Visit Meherab Hasan Fahim on GitHub"
+            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300"
           >
             <FaGithub size={28} />
           </a>
@@ -79,7 +80,8 @@ const Hero = ({ isScrolled }) => {
             href="https://linkedin.com/in/hasanxmeherab"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110"
+            aria-label="Visit Meherab Hasan Fahim on LinkedIn"
+            className="text-slate-400 hover:text-react-cyan-400 transition duration-300 transform hover:scale-110 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300"
           >
             <FaLinkedin size={28} />
           </a>
@@ -99,6 +101,7 @@ const Hero = ({ isScrolled }) => {
             <img
               src={profilePic}
               alt="Meherab Hasan Fahim"
+              loading="eager"
               className="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover"
             />
           </div>

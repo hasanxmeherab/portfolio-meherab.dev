@@ -86,9 +86,11 @@ const Navbar = ({ isScrolled }) => {
                 <a
                   key={link.href}
                   href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`
                     relative 
-                    text-lg font-medium transition duration-300 px-4 py-2 rounded-lg 
+                    text-lg font-medium transition duration-300 px-4 py-2 rounded-lg
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
                     ${isActive
                       ? 'bg-react-cyan-400 text-gray-900 font-bold'
                       : 'text-slate-100 hover:text-react-cyan-400'
@@ -106,7 +108,7 @@ const Navbar = ({ isScrolled }) => {
             <button
               onClick={toggleMenu}
               aria-label="Toggle menu"
-              className="text-slate-100 focus:outline-none"
+              className="text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded-md p-1"
             >
               {isOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
             </button>
@@ -116,10 +118,13 @@ const Navbar = ({ isScrolled }) => {
       </div>
 
       {/* Mobile Menu (Dropdown) */}
-      <div
+      <motion.div
         className={`md:hidden absolute w-full dark:bg-gray-900 shadow-lg transition-all duration-300 ease-in-out ${
-          isOpen ? 'top-20 opacity-100' : '-top-96 opacity-0'
+          isOpen ? 'top-20 opacity-100' : 'top-20 opacity-0 pointer-events-none'
         }`}
+        initial={false}
+        animate={isOpen ? { y: 0 } : { y: -16 }}
+        transition={{ duration: 0.22, ease: 'easeOut' }}
       >
         <div className="flex flex-col items-center py-4">
           {navLinks.map((link) => {
@@ -128,8 +133,10 @@ const Navbar = ({ isScrolled }) => {
               <a
                 key={link.href}
                 href={link.href}
+                aria-current={isActive ? 'page' : undefined}
                 className={`
-                  block w-full text-center text-lg py-4 transition duration-300 
+                  block w-full text-center text-lg py-4 transition duration-300
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-react-cyan-400
                   ${isActive
                     ? 'bg-react-cyan-600 text-white font-bold'
                     : 'text-slate-100 dark:hover:bg-gray-800'
@@ -142,7 +149,7 @@ const Navbar = ({ isScrolled }) => {
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </motion.nav>
   );
 };

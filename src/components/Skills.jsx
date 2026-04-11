@@ -1,11 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from 'react';
 import {
-    SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNextdotjs,
+    SiHtml5, SiCss3, SiJavascript, SiReact, SiNextdotjs,
     SiTailwindcss, SiBootstrap, SiExpress, SiMongodb, SiMongoose,
-    SiFirebase, SiGit, SiC, SiCplusplus, SiPostgresql, SiRedux, SiMysql
+    SiFirebase, SiGit, SiC, SiCplusplus, SiMysql
 } from 'react-icons/si';
-import { Pencil } from 'lucide-react';
 
 // Main Skills Component
 const Skills = () => {
@@ -53,7 +52,7 @@ const Skills = () => {
     return (
         <section 
             id="skills" 
-            className="w-full flex items-center justify-center font-sans relative py-24"
+            className="w-full flex items-center justify-center font-sans relative py-24 md:py-32"
         >
             <div className="w-full max-w-6xl px-6 mx-auto z-10">
 
@@ -66,9 +65,9 @@ const Skills = () => {
                     className="text-center" 
                 >
                         
-                    <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
                         My <span className="text-react-cyan-400">Skills</span> {/* REACT COLOR */}
-                    </h1>
+                    </h2>
                 </motion.div>
 
                 {/* Filter Buttons Container: Centered */}
@@ -77,7 +76,9 @@ const Skills = () => {
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
+                            aria-label={`Filter skills by ${category}`}
                             className={`px-5 py-2 text-sm rounded-full transition-all duration-300 ease-in-out font-medium
+                                focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
                                 ${activeCategory === category
                                     ? 'bg-react-cyan-400 text-black shadow-[0_0_20px_rgba(97,218,251,0.6)]' // REACT COLOR + SHADOW
                                     : 'bg-gray-800/60 border border-gray-700 text-gray-300 hover:bg-gray-700/80'
