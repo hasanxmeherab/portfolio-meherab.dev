@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaCode, FaArrowRight, FaLaptopCode } from 'react-icons/fa'; 
 import projectImage1 from '../assets/project-image-1.png'; 
 import projectImage2 from '../assets/oneelixir.png';
+import projectImage3 from '../assets/diulenslink.png';
 import ProjectDetails from './ProjectDetails';
 
 // --- PROJECT DATA ---
@@ -42,6 +43,25 @@ const projects = [
       'Secure User Authentication and Profile management',
       'Dynamic shopping cart and streamlined checkout process',
       'Integrated backend API hosted on Render'
+    ]
+  },
+  {
+    id: 3,
+    title: 'LensLink',
+    description: '📸 A Professional Photography & Videography Service Management System built with the MERN stack.',
+    image: projectImage3,
+    liveUrl: 'https://diulenslink.vercel.app',
+    githubUrl: 'https://github.com/hasanxmeherab/LensLink-Photography-Videography-Service-Management-System',
+    gridSpan: 'md:col-span-1',
+    overview: 'LensLink is a comprehensive MERN application designed for professional photography and videography services, featuring an intuitive booking system, portfolio showcase, and dedicated admin dashboard for service management.',
+    technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'Tailwind CSS', 'JWT Authentication', 'Cloudinary', 'Multer'],
+    features: [
+      'Service listing and detailed browsing',
+      'Secure online booking system with portfolio showcase',
+      'Admin dashboard for managing services and bookings',
+      'JWT-based authentication and authorization',
+      'Cloud-based image upload via Cloudinary',
+      'Responsive design with Tailwind CSS'
     ]
   }
 ]; 
