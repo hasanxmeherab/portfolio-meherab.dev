@@ -32,7 +32,7 @@ const Hero = ({ isScrolled }) => {
     >
       {/* ═══════════════ LEFT TEXT COLUMN ═══════════════ */}
       <motion.div
-        className="md:w-3/5 text-center md:text-left mb-10 md:mb-0 order-2 md:order-1"
+        className="md:w-3/5 text-center md:text-left mb-2 md:mb-0 order-2 md:order-1"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -79,7 +79,7 @@ const Hero = ({ isScrolled }) => {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-8">
+        <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-4 md:mb-8">
           <a
             href="#projects"
             className="btn-shimmer inline-flex items-center gap-2 bg-react-cyan-500 hover:bg-react-cyan-400 text-black font-bold py-2.5 px-6 rounded-xl text-sm transition-all duration-300 hover:shadow-[0_0_24px_rgba(97,218,251,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-react-cyan-300"
@@ -99,7 +99,7 @@ const Hero = ({ isScrolled }) => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex justify-center md:justify-start gap-4">
+        <div className="flex justify-center md:justify-start gap-4 md:mb-0">
           {[
             { href: 'https://github.com/hasanxmeherab', icon: FaGithub, label: 'GitHub' },
             { href: 'https://linkedin.com/in/hasanxmeherab', icon: FaLinkedin, label: 'LinkedIn' },
@@ -140,7 +140,7 @@ const Hero = ({ isScrolled }) => {
 
       {/* ═══════════════ TECH MARQUEE STRIP ═══════════════ */}
       <motion.div
-        className="absolute bottom-24 md:bottom-20 left-0 right-0 overflow-hidden marquee-wrapper"
+        className="order-3 w-full mt-0 pb-3 overflow-hidden marquee-wrapper md:absolute md:bottom-20 md:left-0 md:right-0 md:mt-0 md:pb-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
